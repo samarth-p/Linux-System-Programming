@@ -25,7 +25,10 @@ typedef struct student_{
 void* list_iterator (void *list_node){
 
     /*write your code here*/
-    return NULL;    
+    dll_node_t *node = (dll_node_t*)list_node;
+    if (node)
+        return node->right;
+    return NULL;
 }
 
 /*Step 3 : implement student comparator function here*/
@@ -33,6 +36,17 @@ void* list_iterator (void *list_node){
 int student_comparator (void *_studentobj1, void *_studentobj2){
 
     /*Write your code here*/
+    student_t *studentobj1 = (student_t*)_studentobj1;
+    student_t *studentobj2 = (student_t*)_studentobj2;
+    
+    if (studentobj1->name == studentobj2->name &&
+        studentobj1->year_of_birth == studentobj2->year_of_birth &&
+        studentobj1->height == studentobj2->height &&
+        studentobj1->weight == studentobj2->weight &&
+        studentobj1->total_marks == studentobj2->total_marks
+    ) {
+        return 0;
+    }
     return -1;
 } 
 
@@ -41,6 +55,9 @@ void*
 get_app_data_from_list_node(void *list_node){
 
     /*Write your code here*/
+    dll_node_t *node = (dll_node_t*)list_node;
+    if (node)
+        return node->data;
     return NULL;
 }
 
