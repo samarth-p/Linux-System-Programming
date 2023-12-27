@@ -38,18 +38,23 @@ create_new_node(char *name){
 
 #define ITERATE_NBRS_BEGIN(node, nbrnode)   \
 {                                           \
- /*<provide your implementation here>*/
+    for(int _i=0; _i < MAX_NBRS; _i++) {    \
+        nbrnode = node->nbrs[_i];           \
+        if (!nbrnode) continue;             \
 
-#define ITERATE_NBRS_END
- /*<provide your implementation here>*/
+#define ITERATE_NBRS_END }}  \
 
 #define ITERATE_ONE_HOP_NBRS_BEGIN(node, nbrnode) \
 {                                                 \
- /*<provide your implementation here>*/
+    node_t *_fnbrnode;                            \
+    ITERATE_NBRS_BEGIN(node, _fnbrnode) {         \
+        ITERATE_NBRS_BEGIN(_fnbrnode, nbrnode) {       \
+            if (node == nbrnode) continue;
 
-#define ITERATE_ONE_HOP_NBRS_END    \
- /*<provide your implementation here>*/
-    
+#define ITERATE_ONE_HOP_NBRS_END  \
+        } ITERATE_NBRS_END;       \
+        } ITERATE_NBRS_END; }     \
+
 int
 main(int argc, char **argv){
 
